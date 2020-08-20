@@ -1,0 +1,184 @@
+import java.util.*;
+import java.io.*;
+import java.lang.*;
+ 
+public class Main {
+     
+    public static class Student implements Comparable<Student>{
+        int ht;
+        int wt;
+        int rollno;
+        
+        public Student(int ht, int wt, int rollno){
+            this.ht = ht;
+            this.wt = wt;
+            this.rollno = rollno;
+        }
+        
+        public String toString(){
+            String str = "";
+            str += "Roll no. " + this.rollno + " height - " + this.ht + " weight - " + this.wt;
+            return str;
+        }
+        
+        public int compareTo(Student o){
+            return this.rollno - o.rollno;
+        }
+    }
+    
+    public static class MYPriorityQueue <T> {
+    ArrayList<T> data;
+    Comparator<T> comparator = null;
+ 
+    public MYPriorityQueue() {
+      this.data = new ArrayList<>();
+    }
+    
+    public MYPriorityQueue(Comparator<T> comparator){
+        this.data = new ArrayList<>();
+        this.comparator = comparator;
+    }
+ 
+    public void add(T val) {
+        
+      data.add(val);
+      upheapify(data.size() - 1);
+    }
+    
+    private void swap(int i, int j){
+        T ith = data.get(i);
+        T jth = data.get(j);
+        data.set(i,jth);
+        data.set(j,ith);
+    }
+    
+    public boolean isSmaller(int i, int j){
+         
+        //  if(data.get(i) < data.get(j)){
+        //      return true;
+        //  }else{
+        //      return false;
+        //  }
+        
+        if(comparator == null){
+            Comparable ith = (Comparable)data.get(i);
+            Comparable jth = (Comparable)data.get(j);
+            return ith.compareTo(jth) < 0;
+        }else{
+            T ith = data.get(i);
+            T jth = data.get(j);
+            return comparator.compare(ith,jth) < 0;
+        }
+    }
+    
+    private void upheapify(int ci){
+        if(ci == 0){
+            return;
+        }
+        int pi = (ci - 1) / 2;
+        if(isSmaller(ci,pi) == true){
+            swap(pi,ci);
+            upheapify(pi);
+        }
+    }
+    
+    private void downheapify(int pi){
+        int lci = (2 * pi) + 1;
+        int rci = (2 * pi) + 2;
+        
+        int isv = pi;
+        if( lci < data.size()){
+            if(isSmaller(lci,isv)){
+                isv = lci;
+            }
+        }
+        
+        if(rci < data.size()){
+            if(isSmaller(rci,isv)){
+                isv = rci;
+            }
+        }
+        
+        if(isv != pi){
+            swap(pi,isv);
+            downheapify(isv);
+        }
+        
+        
+    }
+ 
+    public T remove() {
+        if(data.size() == 0){
+            System.out.println("Underflow");
+            return null;
+        }
+      swap(0,data.size() - 1);
+      T rv = data.remove(data.size() - 1);
+      downheapify(0);
+      return rv;
+    }
+ 
+    public T peek() {
+      if(data.size() == 0){
+            System.out.println("Underflow");
+            return null;
+        }else{
+            return data.get(0);
+        }
+    }
+ 
+    public int size() {
+        return data.size();
+    }
+  }
+    
+    public static class StudentHtComparator implements Comparator<Student>{
+        public int compare(Student s1, Student s2){
+            int diff = s1.ht - s2.ht;
+            if(diff != 0){
+                return diff;
+            }
+            else {
+                int diff1 = s1.wt - s2.wt;
+                if(diff1 != 0){
+                    return diff1;
+                }
+                else{
+                    return s1.rollno - s2.rollno;
+                }
+            }
+        }
+        
+    }
+    
+    public static class StudentWtComparator implements Comparator<Student>{
+        public int compare(Student s1,Student s2){
+            return s1.wt - s2.wt;
+        }
+    }
+    
+    
+    public static void main(String[] args){
+      Student[] arr = new Student[6];
+      arr[0] = new Student(120,60,5);
+      arr[1] = new Student(100,55,1);
+      arr[2] = new Student(119,80,4);
+      arr[3] = new Student(111,70,3);
+      arr[4] = new Student(125,100,2);
+      arr[5] = new Student(100,55,10);
+      
+      MYPriorityQueue<Student> mpq = new MYPriorityQueue(new StudentHtComparator());
+      for(Student s : arr){
+          mpq.add(s);
+      }
+      
+      while(mpq.size() > 0){
+          System.out.println(mpq.remove());
+      }
+      
+  }
+ 
+    
+    
+ 
+}
