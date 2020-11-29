@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - prep1",
+            "request": "launch",
+            "mainClass": "prep1",
+            "projectName": "pepcoding_da58d3ad"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - nokiaKeypad",
             "request": "launch",
             "mainClass": "test.nokiaKeypad",

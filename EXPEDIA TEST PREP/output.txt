@@ -1,0 +1,7 @@
+switch
+tv
+switch1
+tv1
+switch2
+switch3
+tc
