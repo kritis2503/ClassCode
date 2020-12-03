@@ -49,6 +49,7 @@ class Solution {
     }
 }
 
+
 //Leetcode 94
 class Solution {
     public:
@@ -154,3 +155,26 @@ class Solution {
         
     }
 }
+//Leetcode 112
+
+class Solution {
+public:
+    bool hasPathSum(TreeNode* root, int sum) {
+        return hasPathSum_(root,sum,0);
+        
+    }
+    bool hasPathSum_(TreeNode* root,int sum,int fsum)
+    {
+        if(root==nullptr)
+            return false;
+        
+        if(root->left==nullptr && root->right==nullptr)
+        {
+            if(fsum+root->val==sum)
+                return true;
+        }
+        return hasPathSum_(root->left,sum,fsum+root->val)|| hasPathSum_(root->right,sum,fsum+root->val);
+    }
+};
+
+//Leetcode 
