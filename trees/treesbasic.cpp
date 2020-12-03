@@ -79,10 +79,10 @@ void display(Node *node)
 {
     if(node==nullptr)
         return;
-    String str="";
-    str+=(node->left!nullptr):to_string(node->left->data)?".";
+    string str="";
+    str+=(node->left=nullptr):to_string(node->left->data)?".";
     str+=("->"+node.data+"->");
-     str+=(node->right!nullptr):to_string(node->right->data)?".";
+     str+=(node->right!=nullptr):to_string(node->right->data)?".";
      cout<<str<<endl;
     display(node->left);
     display(node->right);
