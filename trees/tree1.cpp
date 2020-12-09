@@ -29,12 +29,11 @@ Node* constructTree(vector<int>&arr){
 void display(Node* node){
     if(node==nullptr)
         return ;
-    
-    string str="";
-str+=(node->left!=nullptr):to_string(node->left->data)?".";
-str+=("->"+to_string(node->data)+"->");
- str+=(node->right!=nullptr):to_string(node->right->data)?".";
- cout<<str<<endl;
+    string str = "";
+    str += node->left != nullptr ? to_string(node->left->data) : ".";
+    str += " <- " + to_string(node->data) + " -> ";
+    str += node->right != nullptr ? to_string(node->right->data) : ".";
+    cout << str << endl;
 display(node->left);
 display(node->right);
     

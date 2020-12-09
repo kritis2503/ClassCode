@@ -22,24 +22,30 @@ public class treeone {
         node.right=constructTree(arr);
         return node;
     }
-    public static void display(Node root) {
-        if(root==null)
+    public static void display(Node node) {
+        if(node==null)
             return;
         String str="";
-        str+=(root.left!=null?root.left.data :".");
-        str+=("->"+root.data+"<-");
-        str+=(root.right!=null?root.right.data:".");
-        System.out.println(str);
-        display(root.left);
-        display(root.right);
+        
+        str += node.left != null ? (node.left.data+"") : ".";
+    str += " <- " + (node.data+"") + " -> ";
+    str += node.right != null ? (node.right.data+"") : ".";
+    System.out.println(str);
+        
+        
+
+        display(node.left);
+        display(node.right);
         return;
     }
     public static void solve(){
         int []arr={10,20,30,40,-1,-1,50,-1,-1,60,70,-1,80,-1,-1,-1,90,100,-1,120,-1,-1,110,130,-1,-1,-1};
         Node root=constructTree(arr);
+        display(root);
     }
     public static void main(String[] args) {
         solve();
+
     }
     
 }
