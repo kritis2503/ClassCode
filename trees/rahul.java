@@ -18,7 +18,7 @@ public class rahul {
         }
         for(int i=0;i<n;i++)
         {
-            System.out.println(ans[i]);
+            System.out.print(ans[i]+" ");
         }
     }
 }
