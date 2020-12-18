@@ -25,12 +25,11 @@ public class rahull {
             {
                 String st=str.substring(start,i+1);
                
-                if(!map.containsKey(st))
-                { map.putIfAbsent(st,1);
-                    count++;}
+             map.putIfAbsent(st,1);
+                    
                 flag=false;
             }
         }
-        System.out.println(count);
+        System.out.println(map.size());
     }
 }
