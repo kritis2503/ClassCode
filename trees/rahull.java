@@ -20,7 +20,8 @@ public class rahull {
                c++;
             else c=0;
             if(Character.isDigit(ch2))
-               flag=false; 
+               flag=false;
+                
             if(c==4 && flag )
             {
                 String st=str.substring(start,i+1);
